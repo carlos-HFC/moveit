@@ -1,0 +1,79 @@
+.countdown {
+  &__container {
+    align-items: center;
+    color: $title;
+    display: flex;
+    font-family: Rajdhani;
+    font-weight: 600;
+
+    & > div {
+      align-items: center;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex: 1;
+      font-size: 8.5rem;
+      justify-content: space-evenly;
+      text-align: center;
+
+      span {
+        flex: 1;
+
+        &:first-child {
+          border-right: 1px solid #f0f1f3;
+        }
+        &:last-child {
+          border-left: 1px solid #f0f1f3;
+        }
+      }
+    }
+
+    & > span {
+      font-size: 6.25rem;
+      margin: 0 0.5rem;
+    }
+  }
+
+  &__btn {
+    align-items: center;
+    background: $blue;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    font-size: 1.25rem;
+    font-weight: 600;
+    height: 5rem;
+    justify-content: center;
+    margin-top: 2rem;
+    transition: background-color 0.2s;
+    width: 100%;
+
+    img {
+      margin-bottom: -1px;
+      margin-left: 1rem;
+    }
+
+    &:not(:disabled):hover {
+      background: $blue-dark;
+    }
+
+    &:disabled {
+      background: $white;
+      border-bottom: 4px solid $green;
+      color: $text;
+      cursor: not-allowed;
+    }
+
+    &-active {
+      background: $white;
+      color: $title;
+
+      &:not(:disabled):hover {
+        background: $red;
+        color: $white;
+      }
+    }
+  }
+}
