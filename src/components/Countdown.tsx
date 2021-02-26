@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { CountdownContext } from '../context/CountdownContext'
 
 export const Countdown = () => {
@@ -35,7 +35,7 @@ export const Countdown = () => {
                 </button>
               ) : (
                 <button type="button" className="countdown__btn" onClick={startCountdown}>
-                  Iniciar um ciclo
+                  Iniciar um ciclo <img src="icons/play.svg" alt="" />
                 </button>
               )
             }
