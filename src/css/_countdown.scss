@@ -57,6 +57,10 @@
 
     &:not(:disabled):hover {
       background: $blue-dark;
+
+      img {
+        filter: brightness(100)
+      }
     }
 
     &:disabled {
