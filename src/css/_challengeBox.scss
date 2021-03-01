@@ -32,6 +32,10 @@
       flex-direction: column;
       justify-content: center;
 
+      @media screen and (max-width: 425px) {
+        margin: 1rem;
+      }
+
       strong {
         color: $title;
         font-size: 2rem;

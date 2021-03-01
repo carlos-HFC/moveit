@@ -53,6 +53,17 @@ a {
     flex: 1;
     gap: 6.25rem;
     grid-template-columns: 1fr 1fr;
+
+    @media screen and (max-width: 426px) {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+    @media screen and (max-width: 769px) {
+      gap: 2rem;
+      margin-top: 3rem;
+      flex-grow: 0;
+    }
   }
 }
 

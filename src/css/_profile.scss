@@ -2,6 +2,10 @@
   align-items: center;
   display: flex;
 
+  @media screen and (max-width: 426px) {
+    margin-top: 2rem;
+  }
+
   & > img {
     border-radius: 50%;
     height: 5.5rem;

@@ -8,6 +8,10 @@
     margin: 3.5rem 0;
     padding-bottom: 1rem;
 
+    @media screen and (max-width: 426px) {
+      margin: 1rem 0;
+    }
+
     span {
       &:first-child {
         font-size: 1.25rem;
