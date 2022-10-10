@@ -1,58 +1,65 @@
-import { GetServerSideProps } from "next";
+import axios from "axios";
+import Cookies from "js-cookie";
 import Head from "next/head";
-import { ChallengeBox, CompletedChallenge, Countdown, ExperienceBar, Profile } from "../components";
-import { ChallengeProvider } from "../context/ChallengeContext";
-import { CountdownProvider } from "../context/CountdownContext";
+import router from 'next/router';
+import { FormEvent, useEffect, useState } from "react";
 
-interface HomeProps {
-  level: number
-  currentExperience: number
-  challengesCompleted: number
-}
+const user = Cookies.get("user");
 
-export default function Home(props: HomeProps) {
-  return (
-    <ChallengeProvider
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
-    >
-      <div className="container">
-        <Head>
-          <title>Início | Move.it</title>
-        </Head>
+export default function Login() {
+  const [username, setUsername] = useState('');
 
-        <ExperienceBar />
+  useEffect(() => {
+    if (user !== 'undefined' || !user) router.push('/cicle');
+  }, []);
 
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenge />
-              <Countdown />
-            </div>
+  async function fetchLogin(event: FormEvent) {
+    event.preventDefault();
 
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
-      </div>
-    </ChallengeProvider>
-  )
-}
+    try {
+      const { data } = await axios.get<User>(`https://api.github.com/users/${username}`);
 
-/**
- * DEVE SER OBRIGATORIAMENTE ESTE NOME E PRECISA SER ASSÍNCRONA
- */
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies
+      const user = {
+        name: data.name,
+        avatar_url: data.avatar_url
+      };
 
-  return {
-    props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted)
+      Cookies.set("user", user);
+      router.push('/cicle');
+    } catch (error) {
+
     }
   }
-}
+
+  return (
+    <div className="login">
+      <Head>
+        <title>Login | Move.it</title>
+      </Head>
+      <div className="login-image">
+        <img src="/logo-symbol.svg" alt="Símbolo do MoveIt" />
+      </div>
+      <div className="login-form">
+        <div className="login-form__image">
+          <img src="/logo-full-invert.svg" alt="Logo do MoveIt" />
+        </div>
+        <div className="login-form__box">
+          <h1 className="form-title">
+            Bem-vindo
+          </h1>
+          <span className="form-subtitle">
+            <img src="/icons/github.svg" alt="Logo do Github" />
+            <p>Faça login com seu Github para começar</p>
+          </span>
+          <form className="form-input" onSubmit={fetchLogin}>
+            <input type="text" placeholder="Digite seu username"
+              value={username} onChange={e => setUsername(e.target.value)} />
+            <button type="submit">
+              <img src="/icons/arrow_right.svg" alt="Entrar" />
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};

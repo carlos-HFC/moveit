@@ -1,19 +1,24 @@
-import { useContext } from 'react'
-import { ChallengeContext } from '../context/ChallengeContext'
+import { useChallenge } from '../context/ChallengeContext';
 
-export const Profile = () => {
-  const { level } = useContext(ChallengeContext)
+type ProfileProps = {
+  user: User;
+};
+
+export const Profile = (props: ProfileProps) => {
+  const { level } = useChallenge();
+
+  const user = ((String(props.user) !== 'undefined') || props.user !== undefined) && JSON.parse(String(props?.user));
 
   return (
     <div className="profile__container">
-      <img src="https://github.com/carlos-hfc.png" alt="Carlos Faustino" />
+      <img src={user?.avatar_url} alt={user?.name} />
       <div>
-        <strong>Carlos Faustino</strong>
+        <strong>{user?.name}</strong>
         <p>
           <img src="icons/level.svg" alt="Level" />
           Level {level}
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
