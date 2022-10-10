@@ -13,9 +13,13 @@
       box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
       display: flex;
       flex: 1;
-      font-size: 8.5rem;
       justify-content: space-evenly;
       text-align: center;
+      font-size: 5.5rem;
+
+      @media (min-width: 426px) {
+        font-size: 8.5rem;
+      }
 
       span {
         flex: 1;
@@ -37,7 +41,7 @@
 
   &__btn {
     align-items: center;
-    background: $blue;
+    background: $blue-1;
     border: 0;
     border-radius: 5px;
     color: #fff;
@@ -56,10 +60,10 @@
     }
 
     &:not(:disabled):hover {
-      background: $blue-dark;
+      background: $blue-2;
 
       img {
-        filter: brightness(100)
+        filter: brightness(100);
       }
     }
 

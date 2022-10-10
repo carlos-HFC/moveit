@@ -1,10 +1,9 @@
-import { useContext } from "react"
-import { ChallengeContext } from "../context/ChallengeContext"
+import { useChallenge } from "../context/ChallengeContext";
 
 export const ExperienceBar = () => {
-  const { currentExperience, experienceToNextLevel } = useContext(ChallengeContext)
+  const { currentExperience, experienceToNextLevel } = useChallenge();
 
-  const percentToNextLevel = Math.round(currentExperience * 100) / experienceToNextLevel
+  const percentToNextLevel = Math.round(currentExperience * 100) / experienceToNextLevel;
 
   return (
     <header className="experience__bar">
@@ -17,5 +16,5 @@ export const ExperienceBar = () => {
       </div>
       <span>{experienceToNextLevel} xp</span>
     </header>
-  )
-}
+  );
+};

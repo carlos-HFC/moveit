@@ -1,0 +1,127 @@
+.login {
+  height: 100vh;
+  display: flex;
+  position: relative;
+  background: $blue-1;
+
+  &-image {
+    display: flex;
+    height: 100%;
+    padding: 5rem;
+    position: relative;
+    width: 50%;
+
+    img {
+      width: calc(100% - 10rem);
+      height: calc(100% - 10rem);
+      object-fit: contain;
+      left: -68px;
+      position: absolute;
+    }
+  }
+
+  &-form {
+    display: flex;
+    height: 100%;
+    width: 50%;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    padding: 5rem;
+    gap: 6rem;
+
+    &__image {
+      img {
+        max-width: 360px;
+        max-height: 76px;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &__box {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .form {
+        &-title {
+          color: $white;
+          font-weight: 600;
+          font-size: 2.25rem;
+          line-height: 46px;
+          font-family: Inter;
+        }
+
+        &-subtitle {
+          display: flex;
+          gap: 1.5rem;
+          align-items: center;
+
+          img {
+            width: 40px;
+            height: 40px;
+          }
+
+          p {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 30px;
+            font-family: Inter;
+            color: $text-highlight;
+            max-width: 260px;
+          }
+        }
+
+        &-input {
+          display: flex;
+
+          input {
+            background: linear-gradient(90deg, $blue-2 0%, transparentize($blue-2, 0.8) 100%);
+            border: 1.5px solid transparent;
+            font-size: 20px;
+            line-height: 34px;
+            color: $white;
+            padding: 1.5rem 1.75rem;
+            height: 5rem;
+            border-radius: 5px 0 0 5px;
+            outline: 0;
+
+            &::placeholder {
+              color: $text-highlight;
+            }
+
+            &:hover,
+            &:focus {
+              border-color: $blue-2;
+            }
+
+            &:not([value=""]) ~ button {
+              background: $green;
+              border-color: $green;
+            }
+          }
+
+          button {
+            outline: 0;
+            border-radius: 0 5px 5px 0;
+            font-size: 0;
+            border: 0;
+            width: 5rem;
+            height: 5rem;
+            background: $blue-2;
+            border: 1.5px solid $blue-2;
+            transition: background-color 0.35s, border-color 0.35s, filter 0.35s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+              filter: brightness(0.9);
+            }
+          }
+        }
+      }
+    }
+  }
+}

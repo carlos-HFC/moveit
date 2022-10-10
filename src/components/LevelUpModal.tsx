@@ -1,8 +1,7 @@
-import { useContext } from "react"
-import { ChallengeContext } from "../context/ChallengeContext"
+import { useChallenge } from "../context/ChallengeContext";
 
 export const LevelUpModal = () => {
-  const { level, closeLevelUpModal } = useContext(ChallengeContext)
+  const { level, closeLevelUpModal } = useChallenge();
 
   return (
     <div className="overlay">
@@ -17,5 +16,5 @@ export const LevelUpModal = () => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
